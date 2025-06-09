@@ -37,13 +37,13 @@ TaskManager is a full-stack web application designed to help users efficiently m
 <br>
 
 ## 🖼️ Screenshot  
-<img src="./ca8b1352-bd7f-42a1-a73c-a415d5971073.png" alt="TaskManager Screenshot" width="700"/>
+![image](https://github.com/user-attachments/assets/afe67c0d-f858-409a-a6b4-e62e7a402e9e)
 
 <br>
 
 ## 👥 Contributors  
 <ul>
-  <li><strong>Ronit Shetty</strong></li>
+  <li><strong>Ronit Shetty</strong> – ronit.shetty128@nmims.in</li>
   <li><strong>Christopher Dsouza</strong> – christopher.dsouza78@nmims.in</li>
 </ul>
 
