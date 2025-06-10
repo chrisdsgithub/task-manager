@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { AuthProvider, useAuth } from './AuthContext';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
+import Navbar from './components/Navbar';
 import './App.css';
+
+// Configure axios to include credentials
+axios.defaults.withCredentials = true;
 
 const API_BASE_URL = 'http://localhost:5000/api';
 
-function App() {
+function AppContent() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [authMode, setAuthMode] = useState('login'); // 'login' or 'register'
+  
+  const { user, loading: authLoading } = useAuth();
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    if (user) {
+      fetchTasks();
+    }
+  }, [user]);
 
   const fetchTasks = async () => {
     try {
@@ -20,6 +32,9 @@ function App() {
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
+      if (error.response?.status === 401) {
+        console.log('User not authenticated');
+      }
     } finally {
       setLoading(false);
     }
@@ -52,12 +67,33 @@ function App() {
     }
   };
 
+  if (authLoading) {
+    return (
+      <div className="App">
+        <div className="loading-container">
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="App">
+        <div className="auth-wrapper">
+          {authMode === 'login' ? (
+            <LoginForm onSwitchToRegister={() => setAuthMode('register')} />
+          ) : (
+            <RegisterForm onSwitchToLogin={() => setAuthMode('login')} />
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Task Manager</h1>
-        <p>Full Stack App: React + Flask + MySQL</p>
-      </header>
+      <Navbar />
       
       <main className="App-main">
         <TaskForm onAddTask={addTask} />
@@ -72,6 +108,14 @@ function App() {
         )}
       </main>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
