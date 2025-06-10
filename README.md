@@ -37,7 +37,10 @@ TaskManager is a full-stack web application designed to help users efficiently m
 <br>
 
 ## 🖼️ Screenshot  
-![image](https://github.com/user-attachments/assets/afe67c0d-f858-409a-a6b4-e62e7a402e9e)
+![image](https://github.com/user-attachments/assets/3b42bcbc-9496-4425-9eac-bc16a5da6c24)
+![image](https://github.com/user-attachments/assets/4d9b6d7c-ee14-43c7-b819-575c9dd2b1a6)
+![image](https://github.com/user-attachments/assets/7fb7eb18-c272-4a3b-8eee-101cf473de02)
+![image](https://github.com/user-attachments/assets/017412d5-3917-4fb0-aefa-8dbc85cddfc2)
 
 <br>
 
